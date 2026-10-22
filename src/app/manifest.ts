@@ -6,6 +6,8 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Haka",
     description: "Screener teknikal saham Bursa Efek Indonesia",
     start_url: "/",
+    lang: "id",
+    categories: ["finance", "business"],
     display: "standalone",
     background_color: "#060a14",
     theme_color: "#060a14",

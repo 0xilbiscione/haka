@@ -35,6 +35,15 @@ No environment variables are needed.
 `vercel.json` pins the API routes to the Singapore region (`sin1`), the closest one to IDX.
 To deploy the offline demo instead, set `DATA_SOURCE=fixture`.
 
+## SEO & share previews
+
+- **Metadata:** each page has its own title, description and canonical URL, written in Indonesian and English. Open Graph and Twitter tags are included.
+- **Structured data:** JSON-LD for `WebSite` / `WebApplication`, plus a breadcrumb and a `Corporation` with its IDX ticker on each stock page.
+- **`/sitemap.xml`:** lists every IDX stock page and refreshes daily. **`/robots.txt`** blocks `/api/`, and the personal pages (watchlist, settings) are `noindex`.
+- **Share images:** there's a branded site-wide image, and each `/stock/XXXX` page gets its own image showing price, % change, a 1-year sparkline, RSI, volume ratio and active signals. Stock images are cached for 1 hour. The Inter font is bundled in `assets/fonts`.
+- **Canonical domain:** URLs use `NEXT_PUBLIC_SITE_URL` if it's set (e.g. `https://haka.id`). Otherwise they use Vercel's production URL automatically.
+- **Testing a preview:** after deploying, paste a link into https://www.opengraph.xyz, or open `/opengraph-image` or `/stock/BBCA/opengraph-image` directly.
+
 ## Checks
 
 ```bash

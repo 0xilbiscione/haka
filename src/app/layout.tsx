@@ -1,14 +1,58 @@
 import type { Metadata, Viewport } from "next";
 import { AppProvider } from "@/components/AppProvider";
 import { BottomBar, TopBar } from "@/components/Nav";
+import { jsonLd, SITE_DESCRIPTION, SITE_DESCRIPTION_EN, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Haka — Screener Saham BEI", template: "%s · Haka" },
-  description: "Screener teknikal gratis untuk seluruh saham Bursa Efek Indonesia: MA, RSI, MACD, volume, breakout, dan pola candlestick.",
-  applicationName: "Haka",
-  appleWebApp: { capable: true, title: "Haka", statusBarStyle: "black-translucent" },
+  metadataBase: new URL(siteUrl()),
+  title: { default: SITE_TITLE, template: `%s · ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  applicationName: SITE_NAME,
+  category: "finance",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: "/",
+    locale: "id_ID",
+    alternateLocale: ["en_US"],
+  },
+  twitter: { card: "summary_large_image", title: SITE_TITLE, description: SITE_DESCRIPTION },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  formatDetection: { telephone: false, address: false, email: false },
+  appleWebApp: { capable: true, title: SITE_NAME, statusBarStyle: "black-translucent" },
 };
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: siteUrl(),
+    inLanguage: ["id-ID", "en"],
+    description: SITE_DESCRIPTION,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: SITE_NAME,
+    url: siteUrl(),
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript",
+    inLanguage: ["id-ID", "en"],
+    description: SITE_DESCRIPTION_EN,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "IDR" },
+  },
+];
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -30,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }} />
         <div className="mesh" aria-hidden="true">
           <span />
           <span />

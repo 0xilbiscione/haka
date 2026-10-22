@@ -51,3 +51,9 @@ export async function getUniverse(): Promise<{ tickers: Ticker[]; source: "tradi
   }
   return { tickers: bundled as Ticker[], source: "bundled" };
 }
+
+/** Looks up a single listed stock (live listing first, bundled list as fallback). */
+export async function findTicker(code: string): Promise<Ticker | null> {
+  const { tickers } = await getUniverse();
+  return tickers.find((t) => t.code === code) ?? (bundled as Ticker[]).find((t) => t.code === code) ?? null;
+}
