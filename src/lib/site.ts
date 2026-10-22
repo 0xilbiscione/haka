@@ -22,14 +22,18 @@ export const SITE_KEYWORDS = [
   "Indonesia stock screener",
 ];
 
-/** Absolute site origin: explicit env, then Vercel's production / deployment URL, then localhost. */
+/** Production origin; override with NEXT_PUBLIC_SITE_URL (e.g. after adding a custom domain). */
+export const PRODUCTION_URL = "https://haka-id.vercel.app";
+
+/**
+ * Absolute site origin for canonicals, OG URLs and the sitemap. Every Vercel
+ * deployment (previews included) points at production so search engines and
+ * share previews never index a preview URL; local runs use localhost.
+ */
 export function siteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   if (explicit) return explicit.replace(/\/+$/, "");
-  const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL;
-  if (prod) return `https://${prod}`;
-  const deploy = process.env.VERCEL_URL;
-  if (deploy) return `https://${deploy}`;
+  if (process.env.VERCEL || process.env.NODE_ENV === "production") return PRODUCTION_URL;
   return `http://localhost:${process.env.PORT ?? 3000}`;
 }
 

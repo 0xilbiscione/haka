@@ -1,5 +1,7 @@
 # Haka — IDX Technical Screener
 
+**Live:** https://haka-id.vercel.app
+
 A free, mobile-first technical stock screener for the **Indonesia Stock Exchange (IDX / BEI)**, with a fluid-glass UI.
 The interface is in Bahasa Indonesia, with an English toggle.
 
@@ -41,8 +43,8 @@ To deploy the offline demo instead, set `DATA_SOURCE=fixture`.
 - **Structured data:** JSON-LD for `WebSite` / `WebApplication`, plus a breadcrumb and a `Corporation` with its IDX ticker on each stock page.
 - **`/sitemap.xml`:** lists every IDX stock page and refreshes daily. **`/robots.txt`** blocks `/api/`, and the personal pages (watchlist, settings) are `noindex`.
 - **Share images:** there's a branded site-wide image, and each `/stock/XXXX` page gets its own image showing price, % change, a 1-year sparkline, RSI, volume ratio and active signals. Stock images are cached for 1 hour. The Inter font is bundled in `assets/fonts`.
-- **Canonical domain:** URLs use `NEXT_PUBLIC_SITE_URL` if it's set (e.g. `https://haka.id`). Otherwise they use Vercel's production URL automatically.
-- **Testing a preview:** after deploying, paste a link into https://www.opengraph.xyz, or open `/opengraph-image` or `/stock/BBCA/opengraph-image` directly.
+- **Canonical domain:** `https://haka-id.vercel.app` (`PRODUCTION_URL` in `src/lib/site.ts`). Preview deployments point there too. To use a custom domain, set `NEXT_PUBLIC_SITE_URL` (e.g. `https://haka.id`).
+- **Testing a preview:** paste https://haka-id.vercel.app/stock/BBCA into https://www.opengraph.xyz, or open https://haka-id.vercel.app/stock/BBCA/opengraph-image directly.
 
 ## Checks
 
