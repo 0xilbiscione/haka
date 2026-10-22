@@ -28,7 +28,12 @@ The results are cached in the browser, so switching screens afterwards is instan
 
 ## Deploy (free)
 
-Push the repo to GitHub, then import it on [Vercel](https://vercel.com/new). No environment variables are needed.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F0xilbiscione%2Fhaka&project-name=haka)
+
+Or go to [vercel.com/new](https://vercel.com/new), import `0xilbiscione/haka`, and click **Deploy**.
+No environment variables are needed.
+`vercel.json` pins the API routes to the Singapore region (`sin1`), the closest one to IDX.
+To deploy the offline demo instead, set `DATA_SOURCE=fixture`.
 
 ## Checks
 
