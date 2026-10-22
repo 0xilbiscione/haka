@@ -1,0 +1,1197 @@
+[
+{
+"code": "AADI",
+"name": "Adaro Andalan Indonesia",
+"sector": "Energy Minerals"
+},
+{
+"code": "AALI",
+"name": "Astra Agro Lestari",
+"sector": "Process Industries"
+},
+{
+"code": "ABMM",
+"name": "ABM Investama",
+"sector": "Energy Minerals"
+},
+{
+"code": "ACES",
+"name": "Aspirasi Hidup Indonesia",
+"sector": "Retail Trade"
+},
+{
+"code": "ACST",
+"name": "Acset Indonusa",
+"sector": "Industrial Services"
+},
+{
+"code": "ADHI",
+"name": "Adhi Karya",
+"sector": "Industrial Services"
+},
+{
+"code": "ADMF",
+"name": "Adira Dinamika Multi Finance",
+"sector": "Finance"
+},
+{
+"code": "ADMR",
+"name": "Adaro Minerals Indonesia",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "ADRO",
+"name": "Alamtri Resources Indonesia",
+"sector": "Energy Minerals"
+},
+{
+"code": "AGII",
+"name": "Samator Indo Gas",
+"sector": "Process Industries"
+},
+{
+"code": "AGRO",
+"name": "Bank Raya Indonesia",
+"sector": "Finance"
+},
+{
+"code": "AKRA",
+"name": "AKR Corporindo",
+"sector": "Distribution Services"
+},
+{
+"code": "AKSI",
+"name": "Mineral Sumberdaya Mandiri",
+"sector": "Transportation"
+},
+{
+"code": "AMMN",
+"name": "Amman Mineral Internasional",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "AMRT",
+"name": "Sumber Alfaria Trijaya",
+"sector": "Retail Trade"
+},
+{
+"code": "ANTM",
+"name": "Aneka Tambang",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "APIC",
+"name": "Pacific Strategic Financial",
+"sector": "Finance"
+},
+{
+"code": "APLN",
+"name": "Agung Podomoro Land",
+"sector": "Finance"
+},
+{
+"code": "ARCI",
+"name": "Archi Indonesia",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "ARKO",
+"name": "Arkora Hydro",
+"sector": "Utilities"
+},
+{
+"code": "ARNA",
+"name": "Arwana Citramulia",
+"sector": "Producer Manufacturing"
+},
+{
+"code": "ARTO",
+"name": "Bank Jago",
+"sector": "Finance"
+},
+{
+"code": "ASII",
+"name": "Astra International",
+"sector": "Consumer Durables"
+},
+{
+"code": "ASRI",
+"name": "Alam Sutera Realty",
+"sector": "Finance"
+},
+{
+"code": "ASSA",
+"name": "Adi Sarana Armada",
+"sector": "Transportation"
+},
+{
+"code": "AUTO",
+"name": "Astra Otoparts",
+"sector": "Consumer Durables"
+},
+{
+"code": "AVIA",
+"name": "Avia Avian",
+"sector": "Process Industries"
+},
+{
+"code": "BABP",
+"name": "Bank MNC Internasional",
+"sector": "Finance"
+},
+{
+"code": "BANK",
+"name": "Bank Aladin Syariah",
+"sector": "Finance"
+},
+{
+"code": "BBCA",
+"name": "Bank Central Asia",
+"sector": "Finance"
+},
+{
+"code": "BBHI",
+"name": "Allo Bank Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BBKP",
+"name": "Bank KB Bukopin",
+"sector": "Finance"
+},
+{
+"code": "BBMD",
+"name": "Bank Mestika Dharma",
+"sector": "Finance"
+},
+{
+"code": "BBNI",
+"name": "Bank Negara Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BBRI",
+"name": "Bank Rakyat Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BBTN",
+"name": "Bank Tabungan Negara",
+"sector": "Finance"
+},
+{
+"code": "BBYB",
+"name": "Bank Neo Commerce",
+"sector": "Finance"
+},
+{
+"code": "BDMN",
+"name": "Bank Danamon Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BELI",
+"name": "Global Digital Niaga",
+"sector": "Retail Trade"
+},
+{
+"code": "BEST",
+"name": "Bekasi Fajar Industrial Estate",
+"sector": "Finance"
+},
+{
+"code": "BFIN",
+"name": "BFI Finance Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BHIT",
+"name": "MNC Asia Holding",
+"sector": "Finance"
+},
+{
+"code": "BIRD",
+"name": "Blue Bird",
+"sector": "Transportation"
+},
+{
+"code": "BJBR",
+"name": "Bank Pembangunan Daerah Jawa Barat dan Banten",
+"sector": "Finance"
+},
+{
+"code": "BJTM",
+"name": "Bank Pembangunan Daerah Jawa Timur",
+"sector": "Finance"
+},
+{
+"code": "BMRI",
+"name": "Bank Mandiri",
+"sector": "Finance"
+},
+{
+"code": "BMTR",
+"name": "Global Mediacom",
+"sector": "Consumer Services"
+},
+{
+"code": "BNGA",
+"name": "Bank CIMB Niaga",
+"sector": "Finance"
+},
+{
+"code": "BNII",
+"name": "Bank Maybank Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BOLT",
+"name": "Garuda Metalindo",
+"sector": "Producer Manufacturing"
+},
+{
+"code": "BREN",
+"name": "Barito Renewables Energy",
+"sector": "Utilities"
+},
+{
+"code": "BRIS",
+"name": "Bank Syariah Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BRMS",
+"name": "Bumi Resources Minerals",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "BRNA",
+"name": "Berlina",
+"sector": "Process Industries"
+},
+{
+"code": "BRPT",
+"name": "Barito Pacific",
+"sector": "Process Industries"
+},
+{
+"code": "BSDE",
+"name": "Bumi Serpong Damai",
+"sector": "Finance"
+},
+{
+"code": "BSSR",
+"name": "Baramulti Suksessarana",
+"sector": "Energy Minerals"
+},
+{
+"code": "BTPN",
+"name": "Bank SMBC Indonesia",
+"sector": "Finance"
+},
+{
+"code": "BTPS",
+"name": "Bank BTPN Syariah",
+"sector": "Finance"
+},
+{
+"code": "BUKA",
+"name": "Bukalapak.com",
+"sector": "Retail Trade"
+},
+{
+"code": "BULL",
+"name": "Buana Lintas Lautan",
+"sector": "Transportation"
+},
+{
+"code": "BUMI",
+"name": "Bumi Resources",
+"sector": "Energy Minerals"
+},
+{
+"code": "BWPT",
+"name": "Eagle High Plantations",
+"sector": "Process Industries"
+},
+{
+"code": "BYAN",
+"name": "Bayan Resources",
+"sector": "Energy Minerals"
+},
+{
+"code": "CAMP",
+"name": "Campina Ice Cream Industry",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "CENT",
+"name": "Centratama Telekomunikasi Indonesia",
+"sector": "Communications"
+},
+{
+"code": "CFIN",
+"name": "Clipan Finance Indonesia",
+"sector": "Finance"
+},
+{
+"code": "CLEO",
+"name": "Sariguna Primatirta",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "CMNP",
+"name": "Citra Marga Nusaphala Persada",
+"sector": "Transportation"
+},
+{
+"code": "CMRY",
+"name": "Cisarua Mountain Dairy",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "CPIN",
+"name": "Charoen Pokphand Indonesia",
+"sector": "Process Industries"
+},
+{
+"code": "CSAP",
+"name": "Catur Sentosa Adiprana",
+"sector": "Distribution Services"
+},
+{
+"code": "CTRA",
+"name": "Ciputra Development",
+"sector": "Finance"
+},
+{
+"code": "CUAN",
+"name": "Petrindo Jaya Kreasi",
+"sector": "Energy Minerals"
+},
+{
+"code": "DCII",
+"name": "DCI Indonesia",
+"sector": "Technology Services"
+},
+{
+"code": "DEWA",
+"name": "Darma Henwa",
+"sector": "Industrial Services"
+},
+{
+"code": "DLTA",
+"name": "Delta Djakarta",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "DMAS",
+"name": "Puradelta Lestari",
+"sector": "Finance"
+},
+{
+"code": "DOID",
+"name": "Delta Dunia Makmur",
+"sector": "Industrial Services"
+},
+{
+"code": "DRMA",
+"name": "Dharma Polimetal",
+"sector": "Consumer Durables"
+},
+{
+"code": "DSNG",
+"name": "Dharma Satya Nusantara",
+"sector": "Process Industries"
+},
+{
+"code": "DSSA",
+"name": "Dian Swastatika Sentosa",
+"sector": "Energy Minerals"
+},
+{
+"code": "DVLA",
+"name": "Darya-Varia Laboratoria",
+"sector": "Health Technology"
+},
+{
+"code": "EDGE",
+"name": "Indointernet",
+"sector": "Technology Services"
+},
+{
+"code": "ELSA",
+"name": "Elnusa",
+"sector": "Industrial Services"
+},
+{
+"code": "EMTK",
+"name": "Elang Mahkota Teknologi",
+"sector": "Consumer Services"
+},
+{
+"code": "ENRG",
+"name": "Energi Mega Persada",
+"sector": "Energy Minerals"
+},
+{
+"code": "EPMT",
+"name": "Enseval Putera Megatrading",
+"sector": "Distribution Services"
+},
+{
+"code": "ERAA",
+"name": "Erajaya Swasembada",
+"sector": "Distribution Services"
+},
+{
+"code": "ESSA",
+"name": "ESSA Industries Indonesia",
+"sector": "Process Industries"
+},
+{
+"code": "EXCL",
+"name": "XLSmart Telecom Sejahtera",
+"sector": "Communications"
+},
+{
+"code": "FAST",
+"name": "Fast Food Indonesia",
+"sector": "Consumer Services"
+},
+{
+"code": "FIRE",
+"name": "Alfa Energi Investama",
+"sector": "Energy Minerals"
+},
+{
+"code": "FREN",
+"name": "Smartfren Telecom",
+"sector": "Communications"
+},
+{
+"code": "GDST",
+"name": "Gunawan Dianjaya Steel",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "GEMS",
+"name": "Golden Energy Mines",
+"sector": "Energy Minerals"
+},
+{
+"code": "GGRM",
+"name": "Gudang Garam",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "GIAA",
+"name": "Garuda Indonesia",
+"sector": "Transportation"
+},
+{
+"code": "GJTL",
+"name": "Gajah Tunggal",
+"sector": "Consumer Durables"
+},
+{
+"code": "GOOD",
+"name": "Garudafood Putra Putri Jaya",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "GOTO",
+"name": "GoTo Gojek Tokopedia",
+"sector": "Technology Services"
+},
+{
+"code": "HEAL",
+"name": "Medikaloka Hermina",
+"sector": "Health Services"
+},
+{
+"code": "HERO",
+"name": "DFI Retail Nusantara",
+"sector": "Retail Trade"
+},
+{
+"code": "HITS",
+"name": "Humpuss Intermoda Transportasi",
+"sector": "Transportation"
+},
+{
+"code": "HMSP",
+"name": "H.M. Sampoerna",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "HOKI",
+"name": "Buyung Poetra Sembada",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "HRTA",
+"name": "Hartadinata Abadi",
+"sector": "Consumer Durables"
+},
+{
+"code": "HRUM",
+"name": "Harum Energy",
+"sector": "Energy Minerals"
+},
+{
+"code": "ICBP",
+"name": "Indofood CBP Sukses Makmur",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "IMAS",
+"name": "Indomobil Sukses Internasional",
+"sector": "Distribution Services"
+},
+{
+"code": "IMPC",
+"name": "Impack Pratama Industri",
+"sector": "Process Industries"
+},
+{
+"code": "INCO",
+"name": "Vale Indonesia",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "INDF",
+"name": "Indofood Sukses Makmur",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "INDS",
+"name": "Indospring",
+"sector": "Consumer Durables"
+},
+{
+"code": "INDY",
+"name": "Indika Energy",
+"sector": "Energy Minerals"
+},
+{
+"code": "INKP",
+"name": "Indah Kiat Pulp & Paper",
+"sector": "Process Industries"
+},
+{
+"code": "INTP",
+"name": "Indocement Tunggal Prakarsa",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "IPCC",
+"name": "Indonesia Kendaraan Terminal",
+"sector": "Transportation"
+},
+{
+"code": "IPCM",
+"name": "Jasa Armada Indonesia",
+"sector": "Transportation"
+},
+{
+"code": "ISAT",
+"name": "Indosat",
+"sector": "Communications"
+},
+{
+"code": "ISSP",
+"name": "Steel Pipe Industry of Indonesia",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "ITMG",
+"name": "Indo Tambangraya Megah",
+"sector": "Energy Minerals"
+},
+{
+"code": "JPFA",
+"name": "Japfa Comfeed Indonesia",
+"sector": "Process Industries"
+},
+{
+"code": "JRPT",
+"name": "Jaya Real Property",
+"sector": "Finance"
+},
+{
+"code": "JSMR",
+"name": "Jasa Marga",
+"sector": "Transportation"
+},
+{
+"code": "KAEF",
+"name": "Kimia Farma",
+"sector": "Health Technology"
+},
+{
+"code": "KBLI",
+"name": "KMI Wire and Cable",
+"sector": "Producer Manufacturing"
+},
+{
+"code": "KEEN",
+"name": "Kencana Energi Lestari",
+"sector": "Utilities"
+},
+{
+"code": "KIJA",
+"name": "Kawasan Industri Jababeka",
+"sector": "Finance"
+},
+{
+"code": "KINO",
+"name": "Kino Indonesia",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "KKGI",
+"name": "Resource Alam Indonesia",
+"sector": "Energy Minerals"
+},
+{
+"code": "KLBF",
+"name": "Kalbe Farma",
+"sector": "Health Technology"
+},
+{
+"code": "KPIG",
+"name": "MNC Land",
+"sector": "Finance"
+},
+{
+"code": "KRAS",
+"name": "Krakatau Steel",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "LIFE",
+"name": "Asuransi Jiwa Sinarmas MSIG",
+"sector": "Finance"
+},
+{
+"code": "LINK",
+"name": "Link Net",
+"sector": "Communications"
+},
+{
+"code": "LPKR",
+"name": "Lippo Karawaci",
+"sector": "Finance"
+},
+{
+"code": "LPPF",
+"name": "Matahari Department Store",
+"sector": "Retail Trade"
+},
+{
+"code": "LSIP",
+"name": "PP London Sumatra Indonesia",
+"sector": "Process Industries"
+},
+{
+"code": "MAPA",
+"name": "Map Aktif Adiperkasa",
+"sector": "Retail Trade"
+},
+{
+"code": "MAPB",
+"name": "MAP Boga Adiperkasa",
+"sector": "Consumer Services"
+},
+{
+"code": "MAPI",
+"name": "Mitra Adiperkasa",
+"sector": "Retail Trade"
+},
+{
+"code": "MARK",
+"name": "Mark Dynamics Indonesia",
+"sector": "Producer Manufacturing"
+},
+{
+"code": "MBAP",
+"name": "Mitrabara Adiperdana",
+"sector": "Energy Minerals"
+},
+{
+"code": "MBMA",
+"name": "Merdeka Battery Materials",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "MCOL",
+"name": "Prima Andalan Mandiri",
+"sector": "Energy Minerals"
+},
+{
+"code": "MDKA",
+"name": "Merdeka Copper Gold",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "MDLN",
+"name": "Modernland Realty",
+"sector": "Finance"
+},
+{
+"code": "MEDC",
+"name": "Medco Energi Internasional",
+"sector": "Energy Minerals"
+},
+{
+"code": "MEGA",
+"name": "Bank Mega",
+"sector": "Finance"
+},
+{
+"code": "MERK",
+"name": "Merck",
+"sector": "Health Technology"
+},
+{
+"code": "META",
+"name": "Nusantara Infrastructure",
+"sector": "Transportation"
+},
+{
+"code": "MIDI",
+"name": "Midi Utama Indonesia",
+"sector": "Retail Trade"
+},
+{
+"code": "MIKA",
+"name": "Mitra Keluarga Karyasehat",
+"sector": "Health Services"
+},
+{
+"code": "MLBI",
+"name": "Multi Bintang Indonesia",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "MLPT",
+"name": "Multipolar Technology",
+"sector": "Technology Services"
+},
+{
+"code": "MNCN",
+"name": "Media Nusantara Citra",
+"sector": "Consumer Services"
+},
+{
+"code": "MPMX",
+"name": "Mitra Pinasthika Mustika",
+"sector": "Distribution Services"
+},
+{
+"code": "MPPA",
+"name": "Matahari Putra Prima",
+"sector": "Retail Trade"
+},
+{
+"code": "MSIN",
+"name": "MNC Digital Entertainment",
+"sector": "Consumer Services"
+},
+{
+"code": "MTDL",
+"name": "Metrodata Electronics",
+"sector": "Distribution Services"
+},
+{
+"code": "MTEL",
+"name": "Dayamitra Telekomunikasi",
+"sector": "Communications"
+},
+{
+"code": "MYOR",
+"name": "Mayora Indah",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "NCKL",
+"name": "Trimegah Bangun Persada",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "NIKL",
+"name": "Pelat Timah Nusantara",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "NISP",
+"name": "Bank OCBC NISP",
+"sector": "Finance"
+},
+{
+"code": "NRCA",
+"name": "Nusa Raya Cipta",
+"sector": "Industrial Services"
+},
+{
+"code": "PANI",
+"name": "Pantai Indah Kapuk Dua",
+"sector": "Finance"
+},
+{
+"code": "PBRX",
+"name": "Pan Brothers",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "PGAS",
+"name": "Perusahaan Gas Negara",
+"sector": "Utilities"
+},
+{
+"code": "PGEO",
+"name": "Pertamina Geothermal Energy",
+"sector": "Utilities"
+},
+{
+"code": "PJAA",
+"name": "Pembangunan Jaya Ancol",
+"sector": "Consumer Services"
+},
+{
+"code": "PNBN",
+"name": "Bank Pan Indonesia",
+"sector": "Finance"
+},
+{
+"code": "PNIN",
+"name": "Paninvest",
+"sector": "Finance"
+},
+{
+"code": "PNLF",
+"name": "Panin Financial",
+"sector": "Finance"
+},
+{
+"code": "POWR",
+"name": "Cikarang Listrindo",
+"sector": "Utilities"
+},
+{
+"code": "PRDA",
+"name": "Prodia Widyahusada",
+"sector": "Health Services"
+},
+{
+"code": "PRIM",
+"name": "Royal Prima",
+"sector": "Health Services"
+},
+{
+"code": "PSAB",
+"name": "J Resources Asia Pasifik",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "PSSI",
+"name": "IMC Pelita Logistik",
+"sector": "Transportation"
+},
+{
+"code": "PTBA",
+"name": "Bukit Asam",
+"sector": "Energy Minerals"
+},
+{
+"code": "PTPP",
+"name": "PP (Persero)",
+"sector": "Industrial Services"
+},
+{
+"code": "PTRO",
+"name": "Petrosea",
+"sector": "Industrial Services"
+},
+{
+"code": "PWON",
+"name": "Pakuwon Jati",
+"sector": "Finance"
+},
+{
+"code": "PYFA",
+"name": "Pyridam Farma",
+"sector": "Health Technology"
+},
+{
+"code": "PZZA",
+"name": "Sarimelati Kencana",
+"sector": "Consumer Services"
+},
+{
+"code": "RAJA",
+"name": "Rukun Raharja",
+"sector": "Utilities"
+},
+{
+"code": "RALS",
+"name": "Ramayana Lestari Sentosa",
+"sector": "Retail Trade"
+},
+{
+"code": "RMKE",
+"name": "RMK Energy",
+"sector": "Transportation"
+},
+{
+"code": "ROTI",
+"name": "Nippon Indosari Corpindo",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "SAME",
+"name": "Sarana Meditama Metropolitan",
+"sector": "Health Services"
+},
+{
+"code": "SCCO",
+"name": "Supreme Cable Manufacturing",
+"sector": "Producer Manufacturing"
+},
+{
+"code": "SCMA",
+"name": "Surya Citra Media",
+"sector": "Consumer Services"
+},
+{
+"code": "SGER",
+"name": "Sumber Global Energy",
+"sector": "Energy Minerals"
+},
+{
+"code": "SGRO",
+"name": "Sampoerna Agro",
+"sector": "Process Industries"
+},
+{
+"code": "SIDO",
+"name": "Industri Jamu dan Farmasi Sido Muncul",
+"sector": "Health Technology"
+},
+{
+"code": "SILO",
+"name": "Siloam International Hospitals",
+"sector": "Health Services"
+},
+{
+"code": "SKLT",
+"name": "Sekar Laut",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "SMBR",
+"name": "Semen Baturaja",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "SMCB",
+"name": "Solusi Bangun Indonesia",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "SMDR",
+"name": "Samudera Indonesia",
+"sector": "Transportation"
+},
+{
+"code": "SMGR",
+"name": "Semen Indonesia",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "SMMA",
+"name": "Sinar Mas Multiartha",
+"sector": "Finance"
+},
+{
+"code": "SMRA",
+"name": "Summarecon Agung",
+"sector": "Finance"
+},
+{
+"code": "SMSM",
+"name": "Selamat Sempurna",
+"sector": "Consumer Durables"
+},
+{
+"code": "SOCI",
+"name": "Soechi Lines",
+"sector": "Transportation"
+},
+{
+"code": "SRIL",
+"name": "Sri Rejeki Isman",
+"sector": "Process Industries"
+},
+{
+"code": "SRTG",
+"name": "Saratoga Investama Sedaya",
+"sector": "Finance"
+},
+{
+"code": "SSIA",
+"name": "Surya Semesta Internusa",
+"sector": "Industrial Services"
+},
+{
+"code": "SSMS",
+"name": "Sawit Sumbermas Sarana",
+"sector": "Process Industries"
+},
+{
+"code": "STTP",
+"name": "Siantar Top",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "SUPR",
+"name": "Solusi Tunas Pratama",
+"sector": "Communications"
+},
+{
+"code": "TAPG",
+"name": "Triputra Agro Persada",
+"sector": "Process Industries"
+},
+{
+"code": "TBIG",
+"name": "Tower Bersama Infrastructure",
+"sector": "Communications"
+},
+{
+"code": "TINS",
+"name": "Timah",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "TKIM",
+"name": "Pabrik Kertas Tjiwi Kimia",
+"sector": "Process Industries"
+},
+{
+"code": "TLKM",
+"name": "Telkom Indonesia",
+"sector": "Communications"
+},
+{
+"code": "TMAS",
+"name": "Temas",
+"sector": "Transportation"
+},
+{
+"code": "TOBA",
+"name": "TBS Energi Utama",
+"sector": "Energy Minerals"
+},
+{
+"code": "TOTL",
+"name": "Total Bangun Persada",
+"sector": "Industrial Services"
+},
+{
+"code": "TOWR",
+"name": "Sarana Menara Nusantara",
+"sector": "Communications"
+},
+{
+"code": "TPIA",
+"name": "Chandra Asri Pacific",
+"sector": "Process Industries"
+},
+{
+"code": "TPMA",
+"name": "Trans Power Marine",
+"sector": "Transportation"
+},
+{
+"code": "TSPC",
+"name": "Tempo Scan Pacific",
+"sector": "Health Technology"
+},
+{
+"code": "TUGU",
+"name": "Asuransi Tugu Pratama Indonesia",
+"sector": "Finance"
+},
+{
+"code": "ULTJ",
+"name": "Ultrajaya Milk Industry",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "UNIC",
+"name": "Unggul Indah Cahaya",
+"sector": "Process Industries"
+},
+{
+"code": "UNTR",
+"name": "United Tractors",
+"sector": "Producer Manufacturing"
+},
+{
+"code": "UNVR",
+"name": "Unilever Indonesia",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "VIVA",
+"name": "Visi Media Asia",
+"sector": "Consumer Services"
+},
+{
+"code": "WIFI",
+"name": "Solusi Sinergi Digital",
+"sector": "Communications"
+},
+{
+"code": "WIIM",
+"name": "Wismilak Inti Makmur",
+"sector": "Consumer Non-Durables"
+},
+{
+"code": "WIKA",
+"name": "Wijaya Karya",
+"sector": "Industrial Services"
+},
+{
+"code": "WINS",
+"name": "Wintermar Offshore Marine",
+"sector": "Transportation"
+},
+{
+"code": "WOMF",
+"name": "Wahana Ottomitra Multiartha",
+"sector": "Finance"
+},
+{
+"code": "WSBP",
+"name": "Waskita Beton Precast",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "WSKT",
+"name": "Waskita Karya",
+"sector": "Industrial Services"
+},
+{
+"code": "WTON",
+"name": "Wijaya Karya Beton",
+"sector": "Non-Energy Minerals"
+},
+{
+"code": "ZINC",
+"name": "Kapuas Prima Coal",
+"sector": "Non-Energy Minerals"
+}
+]
