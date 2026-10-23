@@ -49,7 +49,7 @@ export function FundamentalsPanels({ code }: { code: string }) {
 
   if (loading) {
     return (
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {[0, 1, 2].map((i) => (
           <div key={i} className={`h-48 animate-pulse rounded-[24px] bg-[var(--glass)] ${i === 0 ? "sm:col-span-2" : ""}`} />
         ))}
@@ -71,18 +71,18 @@ export function FundamentalsPanels({ code }: { code: string }) {
   }
 
   const metricList = (fields: FundamentalField[]) => (
-    <dl className="grid grid-cols-2 gap-x-4 text-sm">
+    <dl className="grid grid-cols-1 gap-x-4 text-sm min-[420px]:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2">
       {fields.map((f) => (
-        <div key={f} className="flex items-baseline justify-between gap-2 border-b border-line/60 py-1.5">
-          <dt className="truncate text-xs text-muted">{tr(FIELD_TEXT[f])}</dt>
-          <dd className={`num font-medium ${tone(f, m[f])}`}>{fmtField(f, m[f], lang)}</dd>
+        <div key={f} className="flex min-w-0 items-baseline justify-between gap-2 border-b border-line/60 py-1.5">
+          <dt className="min-w-0 truncate text-xs text-muted">{tr(FIELD_TEXT[f])}</dt>
+          <dd className={`num shrink-0 font-medium whitespace-nowrap ${tone(f, m[f])}`}>{fmtField(f, m[f], lang)}</dd>
         </div>
       ))}
     </dl>
   );
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       <section className="glass rounded-[24px] p-4 sm:col-span-2">
         <h2 className="mb-2 text-sm font-semibold">{t("profile")}</h2>
         {p ? (
@@ -90,7 +90,7 @@ export function FundamentalsPanels({ code }: { code: string }) {
             {p.name && <p className="font-semibold">{p.name}</p>}
             {desc ? (
               <div>
-                <p className={`leading-relaxed text-muted ${!expanded && longDesc ? "line-clamp-4" : ""}`}>{desc}</p>
+                <p className={`leading-relaxed break-words text-muted ${!expanded && longDesc ? "line-clamp-4" : ""}`}>{desc}</p>
                 {longDesc && (
                   <button type="button" className="mt-1 text-xs font-semibold text-accent" onClick={() => setExpanded((e) => !e)}>
                     {expanded ? t("readLess") : t("readMore")}
@@ -117,13 +117,13 @@ export function FundamentalsPanels({ code }: { code: string }) {
                 }
               />
             </dl>
-            {p.address && <Item label={t("address")} value={p.address} />}
+            {p.address && <Item label={t("address")} value={p.address} wrap />}
             {p.officers.length > 0 && (
               <div>
                 <h3 className="mb-1 text-[11px] text-muted">{t("management")}</h3>
-                <ul className="grid gap-x-4 gap-y-1 sm:grid-cols-2">
+                <ul className="grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2">
                   {p.officers.map((o) => (
-                    <li key={`${o.name}-${o.title}`} className="text-xs">
+                    <li key={`${o.name}-${o.title}`} className="text-xs break-words">
                       <span className="font-medium">{o.name}</span>
                       {o.title && <span className="text-muted"> · {o.title}</span>}
                     </li>
@@ -156,11 +156,11 @@ export function FundamentalsPanels({ code }: { code: string }) {
   );
 }
 
-function Item({ label, value }: { label: string; value: React.ReactNode }) {
+function Item({ label, value, wrap }: { label: string; value: React.ReactNode; wrap?: boolean }) {
   return (
     <div className="min-w-0">
       <dt className="text-[11px] text-muted">{label}</dt>
-      <dd className="truncate font-medium">{value ?? "–"}</dd>
+      <dd className={`font-medium ${wrap ? "break-words" : "truncate"}`}>{value ?? "–"}</dd>
     </div>
   );
 }

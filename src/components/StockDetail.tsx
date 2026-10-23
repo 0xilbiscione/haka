@@ -173,7 +173,7 @@ export function StockDetail({ code }: { code: string }) {
 
           <FundamentalsPanels code={code} />
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {GROUPS.map((g) => (
               <section key={g.title} className="glass rounded-[24px] p-4">
                 <h2 className="mb-2 text-sm font-semibold">{t(g.title)}</h2>
