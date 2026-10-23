@@ -4,8 +4,9 @@ import { PRESETS } from "../presets";
 import { evalScreen, type CompareOp, type Condition, type Screen } from "../rules";
 import { siteUrl } from "../site";
 import { buildSnapshot, computeSeries } from "../snapshot";
-import { FLAGS, NUM_FIELDS, type Flag, type NumField, type Snapshot, type Ticker } from "../types";
+import { FLAGS, NUM_FIELDS, TECH_FIELDS, type Flag, type NumField, type Snapshot, type Ticker } from "../types";
 import { dataSource, getDaily, mapLimit, revalidateSeconds } from "./data";
+import { attachFundamentals, fundamentalsStatus, getStockFundamentals } from "./fundamentals";
 import { getUniverse } from "./universe";
 
 // Server-side market access shared by the MCP tools: a cached full-universe
@@ -36,7 +37,7 @@ async function scanUniverse(): Promise<UniverseScan> {
     }
   });
   return {
-    snapshots: results.filter((s): s is Snapshot => s != null),
+    snapshots: await attachFundamentals(results.filter((s): s is Snapshot => s != null)),
     tickers: new Map(tickers.map((t) => [t.code, t])),
     asOf: Date.now(),
     scanned: tickers.length,
@@ -172,6 +173,11 @@ export function summarize(s: Snapshot, t?: Ticker) {
     macdHist: r(v.macdHist),
     fromHigh52Pct: r(v.fromHigh52Pct),
     ret1m: r(v.ret1m),
+    marketCap: r(v.marketCap, 0),
+    pe: r(v.pe, 1),
+    pb: r(v.pb, 2),
+    roe: r(v.roe, 1),
+    divYield: r(v.divYield, 2),
     trend: v.sma20 != null && v.sma50 != null && v.sma200 != null && v.close != null
       ? v.close > v.sma20 && v.sma20 > v.sma50 && v.sma50 > v.sma200 ? "up" : v.close < v.sma20 && v.sma20 < v.sma50 && v.sma50 < v.sma200 ? "down" : "mixed"
       : null,
@@ -183,7 +189,7 @@ export function summarize(s: Snapshot, t?: Ticker) {
 /** Full analysis for one stock. */
 export function detail(s: Snapshot, t?: Ticker | null) {
   const indicators: Record<string, { now: number | null; prev: number | null }> = {};
-  for (const f of NUM_FIELDS) indicators[f] = { now: r(s.v[f], 4), prev: r(s.p[f], 4) };
+  for (const f of TECH_FIELDS) indicators[f] = { now: r(s.v[f], 4), prev: r(s.p[f], 4) };
   const ref = s.p.close ?? s.v.close ?? 0;
   const close = s.v.close ?? 0;
   return {
@@ -216,7 +222,16 @@ export async function analyzeCodes(codes: string[]) {
       const candles = await getDaily(code, "1y");
       const snap = candles.length >= 2 ? buildSnapshot(code, candles) : null;
       if (!snap) return { code, error: "No price data (unknown, suspended or newly listed code)." };
-      return detail(snap, map.get(code));
+      const t = map.get(code);
+      const f = await getStockFundamentals(code, t);
+      const fundamentals: Record<string, number | null> = {};
+      for (const [k, v] of Object.entries(f.metrics)) fundamentals[k] = r(v, 4);
+      return {
+        ...detail(snap, t),
+        fundamentals,
+        profile: { ...f.profile, description: f.profile.description ? f.profile.description.slice(0, 900) : null },
+        fundamentalSources: f.sources,
+      };
     } catch (e) {
       return { code, error: `Price fetch failed: ${e instanceof Error ? e.message : String(e)}` };
     }
@@ -269,6 +284,7 @@ export function screenCatalog(tickers: Ticker[]) {
       "crossAbove/crossBelow compare the previous and latest bar.",
       "Percent fields (changePct, ret*, fromHigh52Pct, bbWidth, atrPct) are in percent units, e.g. 5 = 5%.",
       "value / valueMa20 are traded value in Rupiah (close × volume); volume is in shares (1 lot = 100 shares).",
+      "Fundamental fields (marketCap … beta) are trailing-twelve-month or latest-report values: marketCap, revenue, netIncome in Rupiah; roe, roa, margins, divYield, revenueGrowth, epsGrowth in percent; pe, pb, ps, evEbitda, der, currentRatio, beta as ratios. Negative pe means a loss.",
     ],
   };
 }
@@ -283,6 +299,7 @@ export function marketInfo() {
     },
     dataSource: dataSource === "fixture" ? "fixture (synthetic demo data — NOT real prices)" : "Yahoo Finance daily bars (free, ~10–15 min delayed)",
     scanCache: cacheInfo(),
+    fundamentals: fundamentalsStatus(),
     now: new Date().toISOString(),
   };
 }

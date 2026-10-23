@@ -15,11 +15,12 @@ import {
 } from "./market";
 import { getUniverse } from "./universe";
 
-export const MCP_INSTRUCTIONS = `Haka screens and analyses every stock on the Indonesia Stock Exchange (IDX/BEI) with technical indicators on daily bars.
+export const MCP_INSTRUCTIONS = `Haka screens and analyses every stock on the Indonesia Stock Exchange (IDX/BEI) with technical indicators on daily bars plus fundamental metrics (valuation, profitability, balance sheet) and company profiles.
 - Prices are free Yahoo Finance data, delayed ~10–15 minutes and unofficial; say so when relevant and never present output as investment advice.
 - Call list_screens first to see preset ids, numeric fields, signal ids and sectors.
 - screen_stocks scans the whole market: the first call can take 15–40 s, later calls reuse a cache for 10–60 min.
 - Many IDX stocks are illiquid: pass minAvgValue (20-day average traded value in Rupiah, e.g. 1e9 = Rp 1 billion) to focus on tradable names.
+- Fundamentals come from TradingView and Yahoo Finance (TTM / latest report), are unofficial and can lag filings; negative P/E means a loss.
 - Prices are in Rupiah; 1 lot = 100 shares.`;
 
 const ro = { readOnlyHint: true, openWorldHint: true, idempotentHint: true } as const;
@@ -34,7 +35,7 @@ function fail(e: unknown) {
 
 const conditionSchema = z
   .object({
-    field: z.enum(NUM_FIELDS).optional().describe("Numeric field on the left side, e.g. rsi, close, volRatio"),
+    field: z.enum(NUM_FIELDS).optional().describe("Numeric field on the left side, e.g. rsi, close, volRatio, pe, roe, divYield"),
     op: z.enum([">", ">=", "<", "<=", "crossAbove", "crossBelow"]).optional(),
     value: z.number().optional().describe("Constant to compare with"),
     compareTo: z.enum(NUM_FIELDS).optional().describe("Another field to compare with instead of a constant, e.g. sma200"),
@@ -49,9 +50,9 @@ export function registerHakaTools(server: McpServer) {
     {
       title: "Screen IDX stocks",
       description:
-        "Scan all IDX stocks and return those matching a built-in preset (see list_screens) or custom conditions, with optional liquidity, price and sector filters. Results include price, change, key indicators, trend and active signals.",
+        "Scan all IDX stocks and return those matching a built-in preset (see list_screens) or custom conditions on technical and fundamental fields (e.g. pe, pb, roe, divYield, marketCap), with optional liquidity, price and sector filters. Results include price, change, key indicators, valuation, trend and active signals.",
       inputSchema: z.object({
-        preset: z.string().optional().describe("Built-in screen id, e.g. goldenCross, rsiOversold, volSpike, breakout52w, bullishCandle"),
+        preset: z.string().optional().describe("Built-in screen id, e.g. goldenCross, rsiOversold, volSpike, breakout52w, bullishCandle, value, quality, dividend, growth"),
         conditions: z.array(conditionSchema).max(12).optional().describe("Custom conditions (ignored when preset is given)"),
         logic: z.enum(["AND", "OR"]).optional().describe("How custom conditions combine; default AND"),
         minPrice: z.number().min(0).optional().describe("Minimum close price in Rupiah"),
@@ -99,7 +100,7 @@ export function registerHakaTools(server: McpServer) {
     {
       title: "Analyze IDX stocks",
       description:
-        "Full technical snapshot for 1–10 IDX stocks: latest bar, every indicator (latest and previous day), active signals and candlestick patterns, returns, 52-week range, and IDX tick size plus ARA/ARB auto-rejection prices.",
+        "Full picture for 1–10 IDX stocks: latest bar, every technical indicator (latest and previous day), active signals and candlestick patterns, returns, 52-week range, IDX tick size and ARA/ARB prices, fundamental metrics (valuation, margins, ROE, debt, growth) and the company profile (industry, employees, website, business description, management).",
       inputSchema: z.object({ codes: z.array(code).min(1).max(10).describe("Stock codes, e.g. [\"BBCA\", \"TLKM\"]") }),
       annotations: { title: "Analyze IDX stocks", ...ro },
     },

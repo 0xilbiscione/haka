@@ -13,7 +13,10 @@ import { ScanPanel } from "./ScanPanel";
 import { describeScreen, useAllScreens, type AnyScreen } from "./screens";
 
 const VALUE_STEPS = [0, 1e8, 1e9, 5e9, 1e10, 5e10];
-const SORT_FIELDS: SortKey[] = ["changePct", "valueMa20", "volRatio", "rsi", "adx", "ret1w", "ret1m", "ret3m", "fromHigh52Pct", "atrPct", "code"];
+const SORT_FIELDS: SortKey[] = [
+  "changePct", "valueMa20", "volRatio", "rsi", "adx", "ret1w", "ret1m", "ret3m", "fromHigh52Pct", "atrPct",
+  "marketCap", "pe", "pb", "roe", "divYield", "epsGrowth", "code",
+];
 
 export function Screener() {
   const { snapshots, tickerMap, t, tr, lang, scan } = useApp();

@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { FIELD_TEXT, FLAG_TEXT } from "@/i18n/dict";
+import { FIELD_TEXT, FLAG_TEXT, GROUPS } from "@/i18n/dict";
 import { evalScreen, type CompareOp, type Condition, type Screen } from "@/lib/rules";
-import { FLAGS, NUM_FIELDS, type Flag, type NumField } from "@/lib/types";
+import { FLAGS, FUNDAMENTAL_FIELDS, TECH_FIELDS, type Flag, type NumField } from "@/lib/types";
 import { useApp } from "./AppProvider";
 import { IconPlay, IconPlus, IconTrash } from "./Icons";
 import { describeScreen, opText } from "./screens";
@@ -181,10 +181,19 @@ function FieldSelect({ value, onChange }: { value: NumField; onChange: (f: NumFi
   const { tr } = useApp();
   return (
     <select className="field min-w-0" value={value} onChange={(e) => onChange(e.target.value as NumField)}>
-      {NUM_FIELDS.map((f) => (
-        <option key={f} value={f}>
-          {tr(FIELD_TEXT[f])}
-        </option>
+      {(
+        [
+          [{ id: "Teknikal", en: "Technical" }, TECH_FIELDS],
+          [GROUPS.fundamental, FUNDAMENTAL_FIELDS],
+        ] as const
+      ).map(([label, fields]) => (
+        <optgroup key={label.en} label={tr(label)}>
+          {fields.map((f) => (
+            <option key={f} value={f}>
+              {tr(FIELD_TEXT[f])}
+            </option>
+          ))}
+        </optgroup>
       ))}
     </select>
   );

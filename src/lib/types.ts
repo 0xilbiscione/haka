@@ -16,8 +16,8 @@ export interface Ticker {
 
 export type Series = (number | null)[];
 
-/** Numeric indicator fields available to screens. */
-export const NUM_FIELDS = [
+/** Technical fields computed from daily candles. */
+export const TECH_FIELDS = [
   "close",
   "open",
   "high",
@@ -61,7 +61,51 @@ export const NUM_FIELDS = [
   "ret1m",
   "ret3m",
 ] as const;
+
+/** Fundamental fields (latest reported / trailing twelve months). Constant across bars. */
+export const FUNDAMENTAL_FIELDS = [
+  "marketCap",
+  "pe",
+  "pb",
+  "ps",
+  "evEbitda",
+  "divYield",
+  "eps",
+  "bvps",
+  "roe",
+  "roa",
+  "grossMargin",
+  "opMargin",
+  "netMargin",
+  "der",
+  "currentRatio",
+  "revenue",
+  "netIncome",
+  "revenueGrowth",
+  "epsGrowth",
+  "beta",
+] as const;
+export type FundamentalField = (typeof FUNDAMENTAL_FIELDS)[number];
+
+/** Numeric fields available to screens. */
+export const NUM_FIELDS = [...TECH_FIELDS, ...FUNDAMENTAL_FIELDS] as const;
 export type NumField = (typeof NUM_FIELDS)[number];
+
+export type Fundamentals = Partial<Record<FundamentalField, number | null>>;
+
+export interface CompanyProfile {
+  code: string;
+  name: string | null;
+  sector: string | null;
+  industry: string | null;
+  employees: number | null;
+  website: string | null;
+  description: string | null;
+  address: string | null;
+  sharesOutstanding: number | null;
+  floatShares: number | null;
+  officers: { name: string; title: string }[];
+}
 
 /** Boolean signal flags available to screens. */
 export const FLAGS = [

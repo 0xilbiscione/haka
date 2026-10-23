@@ -1,7 +1,7 @@
 import type { Condition, Screen } from "./rules";
-import type { Flag } from "./types";
+import type { Flag, NumField } from "./types";
 
-export type PresetGroup = "trend" | "momentum" | "volume" | "candle";
+export type PresetGroup = "trend" | "momentum" | "volume" | "candle" | "fundamental";
 
 export interface Preset extends Screen {
   group: PresetGroup;
@@ -10,6 +10,9 @@ export interface Preset extends Screen {
 }
 
 const flag = (f: Flag): Condition => ({ kind: "flag", flag: f });
+const gt = (left: NumField, value: number): Condition => ({ kind: "compare", left, op: ">", right: { value } });
+const gte = (left: NumField, value: number): Condition => ({ kind: "compare", left, op: ">=", right: { value } });
+const lt = (left: NumField, value: number): Condition => ({ kind: "compare", left, op: "<", right: { value } });
 
 const DEFS: Omit<Preset, "builtin">[] = [
   // Trend
@@ -69,8 +72,31 @@ const DEFS: Omit<Preset, "builtin">[] = [
   { id: "bullEngulfing", group: "candle", name: "", logic: "AND", conditions: [flag("bullEngulfing")] },
   { id: "morningStar", group: "candle", name: "", logic: "AND", conditions: [flag("morningStar")] },
   { id: "doji", group: "candle", name: "", logic: "AND", conditions: [flag("doji")] },
+  // Fundamentals
+  {
+    id: "value", group: "fundamental", name: "", logic: "AND",
+    conditions: [gt("pe", 0), lt("pe", 10), lt("pb", 1.5), gt("roe", 10)],
+    sort: { field: "pe", dir: "asc" },
+  },
+  {
+    id: "quality", group: "fundamental", name: "", logic: "AND",
+    conditions: [gt("roe", 15), gt("netMargin", 10), lt("der", 1)],
+    sort: { field: "roe", dir: "desc" },
+  },
+  { id: "dividend", group: "fundamental", name: "", logic: "AND", conditions: [gte("divYield", 5)], sort: { field: "divYield", dir: "desc" } },
+  {
+    id: "growth", group: "fundamental", name: "", logic: "AND",
+    conditions: [gt("revenueGrowth", 15), gt("epsGrowth", 15)],
+    sort: { field: "epsGrowth", dir: "desc" },
+  },
+  { id: "bigCap", group: "fundamental", name: "", logic: "AND", conditions: [gte("marketCap", 50e12)], sort: { field: "marketCap", dir: "desc" } },
+  {
+    id: "trendValue", group: "fundamental", name: "", logic: "AND",
+    conditions: [flag("maUptrend"), gt("pe", 0), lt("pe", 15)],
+    sort: { field: "ret1m", dir: "desc" },
+  },
 ];
 
 export const PRESETS: Preset[] = DEFS.map((p) => ({ ...p, builtin: true }));
 
-export const PRESET_GROUPS: PresetGroup[] = ["trend", "momentum", "volume", "candle"];
+export const PRESET_GROUPS: PresetGroup[] = ["trend", "momentum", "volume", "candle", "fundamental"];

@@ -18,18 +18,24 @@ export interface SortState {
 
 const PAGE = 60;
 const COLS_KEY = "haka:columns";
-const DEFAULT_COLS: NumField[] = ["valueMa20", "volRatio", "rsi", "adx", "ret1m"];
+const DEFAULT_COLS: NumField[] = ["valueMa20", "volRatio", "rsi", "adx", "ret1m", "pe"];
 
-const PCT_FIELDS = new Set<NumField>(["changePct", "fromHigh52Pct", "fromLow52Pct", "ret1w", "ret1m", "ret3m"]);
+const PCT_FIELDS = new Set<NumField>(["changePct", "fromHigh52Pct", "fromLow52Pct", "ret1w", "ret1m", "ret3m", "revenueGrowth", "epsGrowth"]);
+/** Percent values shown without a "+" sign. */
+const RATE_FIELDS = new Set<NumField>(["divYield", "roe", "roa", "grossMargin", "opMargin", "netMargin"]);
+const MULTIPLE_FIELDS = new Set<NumField>(["pe", "pb", "ps", "evEbitda"]);
 const PRICE_FIELDS = new Set<NumField>([
   "close", "open", "high", "low", "sma5", "sma10", "sma20", "sma50", "sma100", "sma200", "ema9", "ema21", "ema50",
   "bbUpper", "bbMid", "bbLower", "atr", "high52", "low52",
 ]);
-const COMPACT_FIELDS = new Set<NumField>(["volume", "value", "volMa20", "valueMa20"]);
+const COMPACT_FIELDS = new Set<NumField>(["volume", "value", "volMa20", "valueMa20", "marketCap", "revenue", "netIncome"]);
 
 export function fmtField(f: NumField, v: number | null | undefined, lang: "id" | "en") {
   if (PCT_FIELDS.has(f)) return fmtPct(v);
-  if (PRICE_FIELDS.has(f)) return fmtPrice(v);
+  if (PRICE_FIELDS.has(f) || f === "eps" || f === "bvps") return fmtPrice(v);
+  if (RATE_FIELDS.has(f)) return v == null ? "–" : `${fmtNum(v, 1)}%`;
+  if (MULTIPLE_FIELDS.has(f)) return v == null ? "–" : `${fmtNum(v, 1)}×`;
+  if (f === "der" || f === "currentRatio" || f === "beta") return fmtNum(v, 2);
   if (COMPACT_FIELDS.has(f)) return fmtCompact(v, lang);
   if (f === "volRatio") return v == null ? "–" : `${fmtNum(v, 1)}×`;
   if (f === "bbWidth" || f === "atrPct") return v == null ? "–" : `${fmtNum(v, 1)}%`;
@@ -137,7 +143,8 @@ export function ResultsList({
                 <div className="flex flex-col items-end gap-1">
                   <Sparkline data={s.spark} width={76} height={30} />
                   <span className="num text-[10.5px] text-faint">
-                    RSI {fmtNum(s.v.rsi, 0)} · {fmtCompact(s.v.valueMa20, lang)}
+                    RSI {fmtNum(s.v.rsi, 0)}
+                    {s.v.pe != null && <> · PE {fmtNum(s.v.pe, 0)}</>} · {fmtCompact(s.v.valueMa20, lang)}
                   </span>
                 </div>
                 </Link>

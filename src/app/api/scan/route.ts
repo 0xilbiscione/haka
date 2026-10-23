@@ -1,4 +1,5 @@
 import { dataSource, scanCodes } from "@/lib/server/data";
+import { attachFundamentals } from "@/lib/server/fundamentals";
 
 export const maxDuration = 60;
 
@@ -12,7 +13,7 @@ export async function GET(req: Request) {
 
   const { snapshots, failed } = await scanCodes(codes);
   return Response.json(
-    { source: dataSource, snapshots, failed, asOf: Date.now() },
+    { source: dataSource, snapshots: await attachFundamentals(snapshots), failed, asOf: Date.now() },
     { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" } },
   );
 }

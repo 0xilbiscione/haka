@@ -114,6 +114,24 @@ export const UI = {
   overlays: { id: "Overlay", en: "Overlays" },
   asOf: { id: "per", en: "as of" },
   install: { id: "Pasang aplikasi", en: "Install app" },
+  profile: { id: "Profil perusahaan", en: "Company profile" },
+  valuation: { id: "Valuasi", en: "Valuation" },
+  profitability: { id: "Profitabilitas & kesehatan", en: "Profitability & health" },
+  industry: { id: "Industri", en: "Industry" },
+  employees: { id: "Karyawan", en: "Employees" },
+  website: { id: "Situs web", en: "Website" },
+  address: { id: "Alamat", en: "Address" },
+  sharesOut: { id: "Saham beredar", en: "Shares outstanding" },
+  freeFloat: { id: "Free float", en: "Free float" },
+  management: { id: "Manajemen", en: "Management" },
+  readMore: { id: "Selengkapnya", en: "Read more" },
+  readLess: { id: "Ringkas", en: "Show less" },
+  noProfile: { id: "Profil tidak tersedia.", en: "Profile not available." },
+  noFundamentals: { id: "Data fundamental tidak tersedia.", en: "Fundamental data not available." },
+  fundamentalsNote: {
+    id: "Data fundamental: TradingView & Yahoo Finance (TTM / laporan terakhir). Tidak resmi.",
+    en: "Fundamentals: TradingView & Yahoo Finance (TTM / latest report). Unofficial.",
+  },
   mcpTitle: { id: "Pakai di Claude (MCP)", en: "Use with Claude (MCP)" },
   mcpBody: {
     id: "Hubungkan Haka ke Claude agar Claude bisa menyaring saham, menganalisis kode saham, dan membaca riwayat harga langsung dari chat.",
@@ -144,6 +162,7 @@ export const GROUPS: Record<string, Pair> = {
   momentum: { id: "Momentum", en: "Momentum" },
   volume: { id: "Volume & breakout", en: "Volume & breakout" },
   candle: { id: "Candlestick", en: "Candlestick" },
+  fundamental: { id: "Fundamental", en: "Fundamental" },
   custom: { id: "Screen saya", en: "My screens" },
 };
 
@@ -242,6 +261,30 @@ export const PRESET_TEXT: Record<string, { name: Pair; desc: Pair }> = {
     desc: { id: "Pola pembalikan 3 candle", en: "Three-candle bullish reversal" },
   },
   doji: { name: { id: "Doji", en: "Doji" }, desc: { id: "Badan sangat kecil — ragu-ragu", en: "Tiny body — indecision" } },
+  value: {
+    name: { id: "Saham murah", en: "Value" },
+    desc: { id: "PER 0–10, PBV < 1,5, ROE > 10%", en: "P/E 0–10, P/B < 1.5, ROE > 10%" },
+  },
+  quality: {
+    name: { id: "Kualitas", en: "Quality" },
+    desc: { id: "ROE > 15%, margin bersih > 10%, DER < 1", en: "ROE > 15%, net margin > 10%, D/E < 1" },
+  },
+  dividend: {
+    name: { id: "Dividen tinggi", en: "High dividend" },
+    desc: { id: "Dividend yield ≥ 5%", en: "Dividend yield ≥ 5%" },
+  },
+  growth: {
+    name: { id: "Bertumbuh", en: "Growth" },
+    desc: { id: "Pendapatan & EPS tumbuh > 15% YoY", en: "Revenue and EPS growth > 15% YoY" },
+  },
+  bigCap: {
+    name: { id: "Big cap", en: "Large caps" },
+    desc: { id: "Kapitalisasi pasar ≥ Rp 50 T", en: "Market cap ≥ Rp 50 T" },
+  },
+  trendValue: {
+    name: { id: "Uptrend + murah", en: "Uptrend + cheap" },
+    desc: { id: "Susunan MA naik dan PER 0–15", en: "MA uptrend stack and P/E 0–15" },
+  },
 };
 
 export const FIELD_TEXT: Record<NumField, Pair> = {
@@ -287,6 +330,26 @@ export const FIELD_TEXT: Record<NumField, Pair> = {
   ret1w: { id: "Return 1 minggu %", en: "1-week return %" },
   ret1m: { id: "Return 1 bulan %", en: "1-month return %" },
   ret3m: { id: "Return 3 bulan %", en: "3-month return %" },
+  marketCap: { id: "Kapitalisasi pasar", en: "Market cap" },
+  pe: { id: "PER", en: "P/E" },
+  pb: { id: "PBV", en: "P/B" },
+  ps: { id: "P/S", en: "P/S" },
+  evEbitda: { id: "EV/EBITDA", en: "EV/EBITDA" },
+  divYield: { id: "Dividend yield %", en: "Dividend yield %" },
+  eps: { id: "EPS (TTM)", en: "EPS (TTM)" },
+  bvps: { id: "Nilai buku/saham", en: "Book value/share" },
+  roe: { id: "ROE %", en: "ROE %" },
+  roa: { id: "ROA %", en: "ROA %" },
+  grossMargin: { id: "Margin kotor %", en: "Gross margin %" },
+  opMargin: { id: "Margin operasi %", en: "Operating margin %" },
+  netMargin: { id: "Margin bersih %", en: "Net margin %" },
+  der: { id: "DER", en: "Debt/equity" },
+  currentRatio: { id: "Current ratio", en: "Current ratio" },
+  revenue: { id: "Pendapatan (TTM)", en: "Revenue (TTM)" },
+  netIncome: { id: "Laba bersih (TTM)", en: "Net income (TTM)" },
+  revenueGrowth: { id: "Pertumbuhan pendapatan %", en: "Revenue growth %" },
+  epsGrowth: { id: "Pertumbuhan EPS %", en: "EPS growth %" },
+  beta: { id: "Beta (1 thn)", en: "Beta (1y)" },
 };
 
 export const FLAG_TEXT: Record<Flag, Pair> = {

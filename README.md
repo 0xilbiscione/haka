@@ -12,6 +12,7 @@ The interface is in Bahasa Indonesia, with an English toggle.
 - **25 built-in screens:** trend, momentum, volume/breakout, and candlestick. Each shows a live match count.
 - **Screen builder:** combine indicator comparisons (`>`, `<`, crosses above/below a value or another indicator) and signals with AND/OR. Screens are saved on the device.
 - **Interactive chart:** TradingView Lightweight Charts, with MA/EMA/Bollinger overlays, pattern markers, and RSI / MACD / Stochastic panes.
+- **Fundamentals & company profile:** market cap, P/E, P/B, P/S, EV/EBITDA, dividend yield, EPS, book value, ROE/ROA, margins, debt/equity, current ratio, revenue and net income (TTM), growth and beta. Every one can be used in screens, filters, sorting and table columns. The stock page adds the business description, industry, employees, website, shares and free float, and management. Six fundamental screens are included: Value, Quality, High dividend, Growth, Large caps, and Uptrend + cheap.
 - **Watchlist,** sector, price, and liquidity filters, plus a column chooser on desktop.
 - **IDX rules:** tick sizes, ARA/ARB limits (edit them in `src/lib/idx.ts` when IDX changes them), the lot size, and live session status in WIB.
 - Installable as a PWA, with dark, light, and system themes.
@@ -56,8 +57,8 @@ Haka includes a public, read-only [MCP](https://modelcontextprotocol.io) server 
 
 | Tool | What it does |
 | --- | --- |
-| `screen_stocks` | Run a preset or custom conditions across all IDX stocks, with liquidity, price, sector and code filters, sorting and a limit |
-| `analyze_stocks` | Full indicator snapshot for 1–10 codes: signals, 52-week range, ARA/ARB/tick |
+| `screen_stocks` | Run a preset or custom conditions (technical and fundamental, e.g. `pe < 10 AND roe > 15`) across all IDX stocks, with liquidity, price, sector and code filters, sorting and a limit |
+| `analyze_stocks` | Full picture for 1–10 codes: indicators, signals, 52-week range, ARA/ARB/tick, fundamentals and company profile |
 | `get_price_history` | Daily OHLCV with optional indicator columns (up to 1,250 bars) |
 | `search_tickers` | Find stocks by code or company name, optionally within a sector |
 | `list_screens` | Presets, fields, signals, operators and sectors accepted by `screen_stocks` |
@@ -90,6 +91,12 @@ npm run update-tickers   # refresh the bundled fallback list (src/data/tickers.j
 | `src/app/api/` | `scan`, `history`, `universe` route handlers |
 | `src/components/` | UI (glass components, screener, chart, builder) |
 | `src/i18n/dict.ts` | Indonesian and English text |
+
+## Fundamental data
+
+- **Metrics** come from TradingView's public scanner in a single request for the whole market, cached for 6 hours (`src/lib/server/fundamentals.ts`). Its column names change over time, so each metric lists candidate columns, and unknown ones are detected and dropped automatically. `market_status` in the MCP server reports any rejected columns.
+- **Profiles** come from Yahoo Finance's `quoteSummary` API, which needs a cookie and crumb handshake. Yahoo also fills any metric TradingView doesn't have. Profiles are cached for 12 hours per stock.
+- If either source fails, the app shows "not available" and doesn't error. In demo mode (`DATA_SOURCE=fixture`) all fundamentals are synthetic.
 
 ## Caveats
 

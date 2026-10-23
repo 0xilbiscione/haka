@@ -9,6 +9,7 @@ import { buildSnapshot } from "@/lib/snapshot";
 import type { Candle, NumField, Snapshot } from "@/lib/types";
 import { useApp } from "./AppProvider";
 import type { Lower, Overlay } from "./Chart";
+import { FundamentalsPanels } from "./Fundamentals";
 import { IconArrowLeft } from "./Icons";
 import { ChangePill, fmtField } from "./Results";
 import { WatchButton } from "./WatchButton";
@@ -169,6 +170,8 @@ export function StockDetail({ code }: { code: string }) {
               <p className="text-sm text-muted">{t("noSignals")}</p>
             )}
           </section>
+
+          <FundamentalsPanels code={code} />
 
           <div className="grid gap-4 sm:grid-cols-2">
             {GROUPS.map((g) => (
