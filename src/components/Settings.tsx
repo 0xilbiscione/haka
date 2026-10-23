@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useApp, type Theme } from "./AppProvider";
 
 export function Settings() {
@@ -52,6 +52,8 @@ export function Settings() {
         </div>
       </section>
 
+      <McpCard />
+
       <section className="glass space-y-2 rounded-[26px] p-5 text-sm">
         <h2 className="font-semibold">{t("dataSourceTitle")}</h2>
         <p className="leading-relaxed text-muted">{t("dataSourceBody")}</p>
@@ -67,5 +69,52 @@ export function Settings() {
 
       <p className="px-2 text-center text-[11px] leading-relaxed text-faint">{t("disclaimer")}</p>
     </div>
+  );
+}
+
+function CopyField({ value, label }: { value: string; label: string }) {
+  const { t } = useApp();
+  const [copied, setCopied] = useState(false);
+  return (
+    <div className="flex items-center gap-2">
+      <code className="field num flex min-w-0 flex-1 items-center overflow-x-auto font-mono text-xs whitespace-nowrap" aria-label={label}>
+        {value}
+      </code>
+      <button
+        type="button"
+        className="btn btn-ghost shrink-0 px-4 text-sm"
+        onClick={() => {
+          navigator.clipboard
+            ?.writeText(value)
+            .then(() => {
+              setCopied(true);
+              setTimeout(() => setCopied(false), 1500);
+            })
+            .catch(() => {});
+        }}
+      >
+        {copied ? `✓ ${t("copied")}` : t("copy")}
+      </button>
+    </div>
+  );
+}
+
+function McpCard() {
+  const { t } = useApp();
+  const [origin, setOrigin] = useState("https://haka-id.vercel.app");
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- show this deployment's own URL after mount
+    setOrigin(window.location.origin);
+  }, []);
+  const url = `${origin}/api/mcp`;
+  return (
+    <section className="glass space-y-3 rounded-[26px] p-5 text-sm">
+      <h2 className="font-semibold">{t("mcpTitle")}</h2>
+      <p className="leading-relaxed text-muted">{t("mcpBody")}</p>
+      <CopyField value={url} label="MCP URL" />
+      <p className="text-xs text-muted">{t("mcpClaudeAi")}</p>
+      <p className="text-xs text-muted">{t("mcpClaudeCode")}</p>
+      <CopyField value={`claude mcp add --transport http haka ${url}`} label="Claude Code command" />
+    </section>
   );
 }

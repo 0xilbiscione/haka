@@ -46,6 +46,27 @@ To deploy the offline demo instead, set `DATA_SOURCE=fixture`.
 - **Canonical domain:** `https://haka-id.vercel.app` (`PRODUCTION_URL` in `src/lib/site.ts`). Preview deployments point there too. To use a custom domain, set `NEXT_PUBLIC_SITE_URL` (e.g. `https://haka.id`).
 - **Testing a preview:** paste https://haka-id.vercel.app/stock/BBCA into https://www.opengraph.xyz, or open https://haka-id.vercel.app/stock/BBCA/opengraph-image directly.
 
+## Use Haka from Claude (MCP)
+
+Haka includes a public, read-only [MCP](https://modelcontextprotocol.io) server at **`https://haka-id.vercel.app/api/mcp`** (Streamable HTTP, no auth).
+
+- **claude.ai** (web, desktop, mobile): Settings → Connectors → *Add custom connector*, then paste the URL.
+- **Claude Code:** `claude mcp add --transport http haka https://haka-id.vercel.app/api/mcp`
+- **Other clients:** point them at the URL. For stdio-only clients, use `npx mcp-remote https://haka-id.vercel.app/api/mcp`.
+
+| Tool | What it does |
+| --- | --- |
+| `screen_stocks` | Run a preset or custom conditions across all IDX stocks, with liquidity, price, sector and code filters, sorting and a limit |
+| `analyze_stocks` | Full indicator snapshot for 1–10 codes: signals, 52-week range, ARA/ARB/tick |
+| `get_price_history` | Daily OHLCV with optional indicator columns (up to 1,250 bars) |
+| `search_tickers` | Find stocks by code or company name, optionally within a sector |
+| `list_screens` | Presets, fields, signals, operators and sectors accepted by `screen_stocks` |
+| `market_status` | IDX session phase (WIB), data source and scan cache age |
+
+The first market-wide scan takes roughly 15–40 seconds. After that, results are cached on the instance for 10 minutes during market hours and 60 minutes otherwise.
+The endpoint is limited to 60 requests per minute per IP. The code is in `src/app/api/mcp/route.ts`, `src/lib/server/mcp-tools.ts` and `src/lib/server/market.ts`.
+To try it offline, run `npm run dev:demo` and connect to `http://localhost:3000/api/mcp`.
+
 ## Checks
 
 ```bash

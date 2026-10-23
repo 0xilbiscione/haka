@@ -114,6 +114,18 @@ export const UI = {
   overlays: { id: "Overlay", en: "Overlays" },
   asOf: { id: "per", en: "as of" },
   install: { id: "Pasang aplikasi", en: "Install app" },
+  mcpTitle: { id: "Pakai di Claude (MCP)", en: "Use with Claude (MCP)" },
+  mcpBody: {
+    id: "Hubungkan Haka ke Claude agar Claude bisa menyaring saham, menganalisis kode saham, dan membaca riwayat harga langsung dari chat.",
+    en: "Connect Haka to Claude so it can screen stocks, analyze tickers and read price history right from the chat.",
+  },
+  mcpClaudeAi: {
+    id: "claude.ai: Settings → Connectors → Add custom connector, lalu tempel URL ini.",
+    en: "claude.ai: Settings → Connectors → Add custom connector, then paste this URL.",
+  },
+  mcpClaudeCode: { id: "Claude Code:", en: "Claude Code:" },
+  copy: { id: "Salin", en: "Copy" },
+  copied: { id: "Tersalin", en: "Copied" },
 } satisfies Record<string, Pair>;
 
 export type UIKey = keyof typeof UI;
