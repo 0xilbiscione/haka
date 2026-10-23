@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { araPrice, arbPrice, fmtCompact, marketPhase, tickSize } from "./idx";
+import { araPrice, arbPrice, fmtCompact, limitLabel, marketPhase, tickSize } from "./idx";
 
 describe("tickSize", () => {
   it("follows the IDX price fractions", () => {
@@ -22,17 +22,32 @@ describe("auto rejection", () => {
     expect(araPrice(1010)).toBe(1260); // 1262.5 → tick 5
     expect(araPrice(9000)).toBe(10800); // 20%
   });
-  it("rounds ARB up to a valid tick and never below Rp50 on the regular board", () => {
-    expect(arbPrice(1000)).toBe(850);
-    expect(arbPrice(1010)).toBe(860); // 858.5 → tick 5
-    expect(arbPrice(55)).toBe(50);
-    expect(arbPrice(50)).toBe(50);
+  it("uses a nominal Rp1 ARA up to Rp10", () => {
+    expect(araPrice(1)).toBe(2);
+    expect(araPrice(10)).toBe(11);
+    expect(araPrice(11)).toBe(14); // 14.85 → 14
   });
-  it("does not floor stocks already trading below Rp50 at Rp50", () => {
-    expect(arbPrice(19)).toBe(17); // 16.15 → tick 1 (was wrongly 50)
-    expect(arbPrice(49)).toBe(42); // 41.65 → 42
-    expect(arbPrice(2)).toBe(2); // 1.7 → 2
+  it("rounds the 7% ARB up to a valid tick", () => {
+    expect(arbPrice(1000)).toBe(930);
+    expect(arbPrice(1010)).toBe(940); // 939.3 → tick 5
+    expect(arbPrice(200)).toBe(186);
+    expect(arbPrice(6000)).toBe(5600); // 5580 → tick 25
+    expect(arbPrice(19)).toBe(18); // 17.67 → 18
+    expect(arbPrice(15)).toBe(14);
+  });
+  it("uses a nominal Rp1 ARB up to Rp14 and never goes below Rp1", () => {
+    expect(arbPrice(14)).toBe(13);
+    expect(arbPrice(11)).toBe(10);
+    expect(arbPrice(10)).toBe(9);
+    expect(arbPrice(2)).toBe(1);
     expect(arbPrice(1)).toBe(1);
+  });
+  it("labels nominal and percentage bands", () => {
+    expect(limitLabel(5, "ara")).toBe("Rp1");
+    expect(limitLabel(12, "ara")).toBe("35%");
+    expect(limitLabel(12, "arb")).toBe("Rp1");
+    expect(limitLabel(15, "arb")).toBe("7%");
+    expect(limitLabel(9000, "ara")).toBe("20%");
   });
 });
 

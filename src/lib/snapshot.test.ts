@@ -48,19 +48,27 @@ describe("near auto-rejection flags", () => {
   const bars = (closes: number[]): Candle[] =>
     closes.map((c, i) => ({ time: i * 86400, open: c, high: c + 1, low: Math.max(1, c - 1), close: c, volume: 1e6 }));
 
-  it("does not flag a sub-Rp50 stock as near ARB just for being below 50", () => {
-    const s = buildSnapshot("BHIT", bars([20, 20, 19, 19]))!;
-    expect(s.flags).not.toContain("nearArb");
+  const flagsOf = (closes: number[]) => buildSnapshot("X", bars(closes))!.flags;
+
+  it("does not flag flat days, even when the limit is one tick away", () => {
+    expect(flagsOf([20, 20, 19, 19])).not.toContain("nearArb");
+    expect(flagsOf([20, 20, 20, 20])).not.toContain("nearArb");
+    expect(flagsOf([5, 5, 5, 5])).not.toContain("nearAra");
   });
 
-  it("flags a real limit-down day below Rp50", () => {
-    const s = buildSnapshot("BHIT", bars([20, 20, 20, 17]))!; // ARB from 20 = 17
-    expect(s.flags).toContain("nearArb");
+  it("flags limit-down days in the 7% and Rp1 bands", () => {
+    expect(flagsOf([20, 20, 20, 19])).toContain("nearArb"); // ARB from 20 = 19
+    expect(flagsOf([12, 12, 12, 11])).toContain("nearArb"); // Rp1 band
+    expect(flagsOf([1000, 1000, 1000, 935])).toContain("nearArb"); // ARB 930, tick 5
+    expect(flagsOf([1000, 1000, 1000, 960])).not.toContain("nearArb");
   });
 
-  it("does not flag a stock pinned at the Rp50 floor", () => {
-    const s = buildSnapshot("X", bars([50, 50, 50, 50]))!;
-    expect(s.flags).not.toContain("nearArb");
+  it("flags a limit-up day in the Rp1 band", () => {
+    expect(flagsOf([10, 10, 10, 11])).toContain("nearAra");
+  });
+
+  it("does not flag a stock pinned at the Rp1 floor", () => {
+    expect(flagsOf([1, 1, 1, 1])).not.toContain("nearArb");
   });
 });
 

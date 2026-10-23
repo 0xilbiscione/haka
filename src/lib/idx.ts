@@ -1,6 +1,17 @@
 // Indonesia Stock Exchange trading rules used for display and signals.
 // Rules change from time to time; keep these tables in sync with IDX
 // announcements (https://www.idx.co.id).
+//
+// Auto-rejection limits per Kep-00158/BEI/10-2026 (Main, Development and New
+// Economy boards), in force 20 Oct – 31 Dec 2026; IDX reviews them after that.
+// Minimum price is Rp 1 since 28 Sep 2026 (Kep-00136/BEI/09-2026).
+//
+//   Previous close     ARA      ARB
+//   Rp 1–10            +Rp 1    −Rp 1
+//   Rp 11–14           +35%     −Rp 1
+//   Rp 15–200          +35%     −7%
+//   > Rp 200–5,000     +25%     −7%
+//   > Rp 5,000         +20%     −7%
 
 /** Price fraction (tick size) by price tier, regular board. */
 export function tickSize(price: number): number {
@@ -11,33 +22,24 @@ export function tickSize(price: number): number {
   return 25;
 }
 
-/** Auto-rejection upper limit (ARA) as a fraction of the reference price. */
+/** Lowest price on the regular board. */
+export const MIN_PRICE = 1;
+export const LOT = 100;
+
+/** Highest reference price whose ARA / ARB is a nominal Rp 1 instead of a percentage. */
+export const ARA_NOMINAL_MAX = 10;
+export const ARB_NOMINAL_MAX = 14;
+
+/** Auto-rejection upper limit (ARA) as a fraction of the reference price (percentage bands). */
 export function araPct(ref: number): number {
   if (ref <= 200) return 0.35;
   if (ref <= 5000) return 0.25;
   return 0.2;
 }
 
-/**
- * Auto-rejection lower limit (ARB). IDX has switched between a flat 15% and a
- * tiered (symmetric with ARA) limit in recent years; the flat 15% is the
- * conservative default.
- */
+/** Auto-rejection lower limit (ARB) as a fraction of the reference price (percentage bands). */
 export function arbPct(_ref: number): number {
-  return 0.15;
-}
-
-/** Lowest price on the regular board. */
-export const MIN_PRICE = 50;
-export const LOT = 100;
-
-/**
- * Lowest price a stock can be pushed to from `ref`. The Rp 50 floor only binds
- * stocks still trading at or above it; stocks already below Rp 50 (watchlist
- * board, full call auction) can trade down to Rp 1.
- */
-export function priceFloor(ref: number): number {
-  return ref >= MIN_PRICE ? MIN_PRICE : 1;
+  return 0.07;
 }
 
 export function roundDownToTick(price: number): number {
@@ -51,11 +53,19 @@ export function roundUpToTick(price: number): number {
 }
 
 export function araPrice(ref: number): number {
+  if (ref <= ARA_NOMINAL_MAX) return ref + 1;
   return roundDownToTick(ref * (1 + araPct(ref)));
 }
 
 export function arbPrice(ref: number): number {
-  return Math.max(priceFloor(ref), roundUpToTick(ref * (1 - arbPct(ref))));
+  if (ref <= ARB_NOMINAL_MAX) return Math.max(MIN_PRICE, ref - 1);
+  return Math.max(MIN_PRICE, roundUpToTick(ref * (1 - arbPct(ref))));
+}
+
+/** Human label for the limit rule that applies at `ref`: "Rp1" for nominal bands, else e.g. "35%". */
+export function limitLabel(ref: number, side: "ara" | "arb"): string {
+  if (side === "ara") return ref <= ARA_NOMINAL_MAX ? "Rp1" : `${Math.round(araPct(ref) * 100)}%`;
+  return ref <= ARB_NOMINAL_MAX ? "Rp1" : `${Math.round(arbPct(ref) * 100)}%`;
 }
 
 export type MarketPhase = "pre" | "session1" | "break" | "session2" | "preclose" | "closed";

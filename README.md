@@ -14,7 +14,7 @@ The interface is in Bahasa Indonesia, with an English toggle.
 - **Interactive chart:** TradingView Lightweight Charts, with MA/EMA/Bollinger overlays, pattern markers, and RSI / MACD / Stochastic panes.
 - **Fundamentals & company profile:** market cap, P/E, P/B, P/S, EV/EBITDA, dividend yield, EPS, book value, ROE/ROA, margins, debt/equity, current ratio, revenue and net income (TTM), growth and beta. Every one can be used in screens, filters, sorting and table columns. The stock page adds the business description, industry, employees, website, shares and free float, and management. Six fundamental screens are included: Value, Quality, High dividend, Growth, Large caps, and Uptrend + cheap.
 - **Watchlist,** sector, price, and liquidity filters, plus a column chooser on desktop.
-- **IDX rules:** tick sizes, ARA/ARB limits (edit them in `src/lib/idx.ts` when IDX changes them), the lot size, and live session status in WIB.
+- **IDX rules:** tick sizes, ARA/ARB limits per Kep-00158/BEI/10-2026 (7% ARB, Rp 1 limits for cheap stocks, Rp 1 minimum price; in force until 31 Dec 2026, so edit `src/lib/idx.ts` when IDX changes them), the lot size, and live session status in WIB.
 - Installable as a PWA, with dark, light, and system themes.
 
 ## Run locally

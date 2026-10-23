@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { BEARISH_FLAGS, BULLISH_FLAGS, FIELD_TEXT, FLAG_TEXT, NEUTRAL_FLAGS } from "@/i18n/dict";
-import { araPct, araPrice, arbPct, arbPrice, fmtCompact, fmtPrice, LOT, tickSize } from "@/lib/idx";
+import { araPrice, arbPrice, fmtCompact, fmtPrice, limitLabel, LOT, tickSize } from "@/lib/idx";
 import { buildSnapshot } from "@/lib/snapshot";
 import type { Candle, NumField, Snapshot } from "@/lib/types";
 import { useApp } from "./AppProvider";
@@ -193,8 +193,8 @@ export function StockDetail({ code }: { code: string }) {
                 <h2 className="mb-2 text-sm font-semibold">{t("idxRules")}</h2>
                 <dl className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
                   <Stat label={t("tick")} value={`Rp ${fmtPrice(tickSize(last))}`} />
-                  <Stat label={`${t("araLimit")} (${Math.round(araPct(prevClose) * 100)}%)`} value={fmtPrice(araPrice(prevClose))} tone="up" />
-                  <Stat label={`${t("arbLimit")} (${Math.round(arbPct(prevClose) * 100)}%)`} value={fmtPrice(arbPrice(prevClose))} tone="down" />
+                  <Stat label={`${t("araLimit")} (${limitLabel(prevClose, "ara")})`} value={fmtPrice(araPrice(prevClose))} tone="up" />
+                  <Stat label={`${t("arbLimit")} (${limitLabel(prevClose, "arb")})`} value={fmtPrice(arbPrice(prevClose))} tone="down" />
                   <Stat label={`${t("lot")} = ${LOT} ${t("shares")}`} value={`Rp ${fmtCompact(last * LOT, lang)}`} />
                 </dl>
               </section>

@@ -137,13 +137,13 @@ export function buildSnapshot(code: string, candles: Candle[]): Snapshot | null 
   if (div.bull) flags.add("rsiBullDiv");
   if (div.bear) flags.add("rsiBearDiv");
 
-  // Near auto-rejection: within one tick of the limit computed from yesterday's close.
+  // Near auto-rejection: moved toward the limit computed from yesterday's close and
+  // ended within one tick of it. Requiring the move matters for cheap stocks, whose
+  // limits (Rp 1 or 7%) can sit a single tick from the reference price.
   const ref = p.close as number;
   if (ref > 0) {
-    if (close >= araPrice(ref) - tickSize(close)) flags.add("nearAra");
-    // A stock already at its floor has no room to fall, so it is not "near" ARB.
-    const arb = arbPrice(ref);
-    if (arb < ref && close <= arb + tickSize(close)) flags.add("nearArb");
+    if (close > ref && close >= araPrice(ref) - tickSize(close)) flags.add("nearAra");
+    if (close < ref && close <= arbPrice(ref) + tickSize(close)) flags.add("nearArb");
   }
 
   return {

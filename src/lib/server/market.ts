@@ -1,5 +1,5 @@
 import { FIELD_TEXT, FLAG_TEXT, PRESET_TEXT } from "@/i18n/dict";
-import { araPct, araPrice, arbPct, arbPrice, marketPhase, tickSize } from "../idx";
+import { araPrice, arbPrice, limitLabel, marketPhase, tickSize } from "../idx";
 import { PRESETS } from "../presets";
 import { evalScreen, type CompareOp, type Condition, type Screen } from "../rules";
 import { siteUrl } from "../site";
@@ -204,9 +204,11 @@ export function detail(s: Snapshot, t?: Ticker | null) {
     idxRules: {
       tickSize: tickSize(close),
       araPrice: ref ? araPrice(ref) : null,
-      araPct: ref ? araPct(ref) * 100 : null,
+      araPct: ref ? ((araPrice(ref) - ref) / ref) * 100 : null,
+      araRule: ref ? limitLabel(ref, "ara") : null,
       arbPrice: ref ? arbPrice(ref) : null,
-      arbPct: ref ? arbPct(ref) * 100 : null,
+      arbPct: ref ? ((arbPrice(ref) - ref) / ref) * 100 : null,
+      arbRule: ref ? limitLabel(ref, "arb") : null,
       lotShares: 100,
       lotValue: close * 100,
     },
