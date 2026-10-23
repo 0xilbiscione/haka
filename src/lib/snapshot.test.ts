@@ -44,6 +44,26 @@ describe("buildSnapshot", () => {
   });
 });
 
+describe("near auto-rejection flags", () => {
+  const bars = (closes: number[]): Candle[] =>
+    closes.map((c, i) => ({ time: i * 86400, open: c, high: c + 1, low: Math.max(1, c - 1), close: c, volume: 1e6 }));
+
+  it("does not flag a sub-Rp50 stock as near ARB just for being below 50", () => {
+    const s = buildSnapshot("BHIT", bars([20, 20, 19, 19]))!;
+    expect(s.flags).not.toContain("nearArb");
+  });
+
+  it("flags a real limit-down day below Rp50", () => {
+    const s = buildSnapshot("BHIT", bars([20, 20, 20, 17]))!; // ARB from 20 = 17
+    expect(s.flags).toContain("nearArb");
+  });
+
+  it("does not flag a stock pinned at the Rp50 floor", () => {
+    const s = buildSnapshot("X", bars([50, 50, 50, 50]))!;
+    expect(s.flags).not.toContain("nearArb");
+  });
+});
+
 describe("parseChart", () => {
   it("normalizes Yahoo rows, drops nulls and de-duplicates the live bar", () => {
     const day = 1760925600; // 2025-10-20 02:00 UTC = 09:00 WIB

@@ -22,10 +22,17 @@ describe("auto rejection", () => {
     expect(araPrice(1010)).toBe(1260); // 1262.5 → tick 5
     expect(araPrice(9000)).toBe(10800); // 20%
   });
-  it("rounds ARB up to a valid tick and never below Rp50", () => {
+  it("rounds ARB up to a valid tick and never below Rp50 on the regular board", () => {
     expect(arbPrice(1000)).toBe(850);
     expect(arbPrice(1010)).toBe(860); // 858.5 → tick 5
     expect(arbPrice(55)).toBe(50);
+    expect(arbPrice(50)).toBe(50);
+  });
+  it("does not floor stocks already trading below Rp50 at Rp50", () => {
+    expect(arbPrice(19)).toBe(17); // 16.15 → tick 1 (was wrongly 50)
+    expect(arbPrice(49)).toBe(42); // 41.65 → 42
+    expect(arbPrice(2)).toBe(2); // 1.7 → 2
+    expect(arbPrice(1)).toBe(1);
   });
 });
 

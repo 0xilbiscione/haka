@@ -27,8 +27,18 @@ export function arbPct(_ref: number): number {
   return 0.15;
 }
 
+/** Lowest price on the regular board. */
 export const MIN_PRICE = 50;
 export const LOT = 100;
+
+/**
+ * Lowest price a stock can be pushed to from `ref`. The Rp 50 floor only binds
+ * stocks still trading at or above it; stocks already below Rp 50 (watchlist
+ * board, full call auction) can trade down to Rp 1.
+ */
+export function priceFloor(ref: number): number {
+  return ref >= MIN_PRICE ? MIN_PRICE : 1;
+}
 
 export function roundDownToTick(price: number): number {
   const t = tickSize(price);
@@ -45,7 +55,7 @@ export function araPrice(ref: number): number {
 }
 
 export function arbPrice(ref: number): number {
-  return Math.max(MIN_PRICE, roundUpToTick(ref * (1 - arbPct(ref))));
+  return Math.max(priceFloor(ref), roundUpToTick(ref * (1 - arbPct(ref))));
 }
 
 export type MarketPhase = "pre" | "session1" | "break" | "session2" | "preclose" | "closed";

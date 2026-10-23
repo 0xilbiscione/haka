@@ -141,7 +141,9 @@ export function buildSnapshot(code: string, candles: Candle[]): Snapshot | null 
   const ref = p.close as number;
   if (ref > 0) {
     if (close >= araPrice(ref) - tickSize(close)) flags.add("nearAra");
-    if (close <= arbPrice(ref) + tickSize(close)) flags.add("nearArb");
+    // A stock already at its floor has no room to fall, so it is not "near" ARB.
+    const arb = arbPrice(ref);
+    if (arb < ref && close <= arb + tickSize(close)) flags.add("nearArb");
   }
 
   return {
